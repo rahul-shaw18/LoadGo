@@ -1,0 +1,12 @@
+<div class="contain">
+    <div class="row d-flex align-items-center justify-content-center">
+        <form class="col-md-6">
+            <div class="card px-5 py-5">
+                <div class="form-input">
+                    <input type="text" name="phoneNumber" [(ngModel)]="phoneNumber" min="10" max="15" class="form-control" placeholder="Enter Phone Number">
+                </div>
+                <button (click)="getOTP()" class="btn btn-success mt-4 signup">Get OTP</button>
+            </div>
+            <div id="sign-in-button"></div>
+        </form>
+    </div>

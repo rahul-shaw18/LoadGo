@@ -1,0 +1,514 @@
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Load<span>Go</span></a>
+        <button class="navbar-toggler" (click)="toggleMenu()" type="button" data-toggle="collapse"
+            data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="navbar-collapse collapse" [ngClass]="toggle == true ? 'show' : ''" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a routerLink="" fragment="Home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a routerLink="" fragment="AboutUs" class="nav-link">About</a></li>
+                <!-- <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li> -->
+                <li class="nav-item"><a routerLink="" fragment="Services" class="nav-link">Services</a></li>
+                <!--<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li> -->
+                <li class="nav-item"><a routerLink="" fragment="ContactUs" class="nav-link">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- END nav -->
+<div id="Home" class="hero-wrap hero-container" 
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text justify-content-start align-items-center">
+            <div class="col-lg-6 col-md-6 ftco-animate d-flex align-items-end">
+                <div class="text">
+                    <!-- <h1 class="mb-4">Now <span>It's easy for you</span> <span>rent a car</span></h1> -->
+                    <p style="font-size: 18px;"></p>
+
+                </div>
+            </div>
+            <div class="col-lg-2 col"></div>
+
+
+            <div class="col-lg-4 col-md-6 mt-0 mt-md-5 d-flex">
+                <div [ngStyle]="{'display': toggleForm ? 'none' : 'block'}">
+                    <form [formGroup]="form" class="request-form ftco-animate">
+                        <h2>Get Estimate Value</h2>
+                        <div class="form-group">
+                            <label for="" class="label">Pick-up location</label>
+                            <input #pickUpField type="text" class="form-control" formControlName="pickUp"
+                                placeholder="City, Airport, Station, etc">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="label">Drop-off location</label>
+                            <input #dropOffField type="text" class="form-control" formControlName="dropOff"
+                                placeholder="City, Airport, Station, etc">
+                        </div>
+                        <div class="d-flex">
+                            <div class="form-group mr-2">
+                                <label for="" class="label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" formControlName="firstName"
+                                    placeholder="First Name">
+
+                            </div>
+                            <div class="form-group ml-2">
+                                <label for="" class="label">Last Name</label>
+                                <input type="text" class="form-control" id="LastName" formControlName="LastName"
+                                    placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="label">Phone Number</label>
+                            <input id="calendar" type="number" class="form-control" id="phoneNo"
+                                formControlName="phoneNo" placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <button id="calendar" [disabled]="form.invalid" (click)="getDistance()"
+                                class="btn btn-primary py-3 px-4">Get Estimate Value</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div [ngStyle]="{'display': !toggleForm ? 'none' : 'block'}" style=" width:400px">
+                    <form [formGroup]="form" class="request-form ftco-animate estimate-form" style=" height:517px">
+                        <h2>Your Estimate</h2>
+                        <div>
+
+                            <div class="form-group">
+                                <label for="pickUp" class="label">PickUp:</label>
+                                <input id="pickUp" type="text" class="form-control" disabled
+                                    [value]="this.form.value.pickUp">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dropOff" class="label">Drop:</label>
+                                <input id="dropOff" type="text" class="form-control" disabled
+                                    [value]="this.form.value.dropOff">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="vehicle" class="label">Vehicle:</label>
+                                <input id="vehicle" type="text" class="form-control" disabled value="TATA Ace">
+                            </div>
+
+                            <div class="d-flex">
+                                <div class="form-group mr-2">
+                                    <label for="distance" class="label">Distance:</label>
+                                    <input id="distance" type="text" class="form-control" disabled
+                                        [value]="distance + ' KM'">
+                                </div>
+
+
+                                <div class="form-group ml-2">
+                                    <label for="dropOff" class="label">Price:</label>
+                                    <input id="dropOff" type="text" class="form-control" disabled
+                                        [value]="'Rs '+total_price">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="form-group back-button">
+                            <button id="calendar" (click)="goBack()" class="btn btn-primary py-3 px-4">Go Back</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- <section class="ftco-section ftco-no-pb ftco-no-pt">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="search-wrap-1 ftco-animate mb-5">
+                        <form action="#" class="search-property-1">
+                            <div class="row">
+                                <div class="col-lg align-items-end">
+                                    <div class="form-group">
+                                        <label for="#">Select Model</label>
+                                        <div class="form-field">
+                                            <div class="select-wrap">
+                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">Select Model</option>
+                                                    <option value="">Model 1</option>
+                                                    <option value="">Model 2</option>
+                                                    <option value="">Model 3</option>
+                                                    <option value="">Model 4</option>
+                                                    <option value="">Model 5</option>
+                                                    <option value="">Model 6</option>
+                                                    <option value="">Model 7</option>
+                                                    <option value="">Model 8</option>
+                                                    <option value="">Model 9</option>
+                                                    <option value="">Model 10</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg align-items-end">
+                                    <div class="form-group">
+                                        <label for="#">Select Brand</label>
+                                        <div class="form-field">
+                                            <div class="select-wrap">
+                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">Select Brand</option>
+                                                    <option value="">Brand 1</option>
+                                                    <option value="">Brand 2</option>
+                                                    <option value="">Brand 3</option>
+                                                    <option value="">Brand 4</option>
+                                                    <option value="">Brand 5</option>
+                                                    <option value="">Brand 6</option>
+                                                    <option value="">Brand 7</option>
+                                                    <option value="">Brand 8</option>
+                                                    <option value="">Brand 9</option>
+                                                    <option value="">Brand 10</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg align-items-end">
+                                    <div class="form-group">
+                                        <label for="#">Year Model</label>
+                                        <div class="form-field">
+                                            <div class="select-wrap">
+                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">Year Model</option>
+                                                    <option value="">2019</option>
+                                                    <option value="">2018</option>
+                                                    <option value="">2017</option>
+                                                    <option value="">2016</option>
+                                                    <option value="">2015</option>
+                                                    <option value="">2014</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg align-items-end">
+                                    <div class="form-group">
+                                        <label for="#">Price Limit</label>
+                                        <div class="form-field">
+                                            <div class="select-wrap">
+                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">$1</option>
+                                                    <option value="">$50</option>
+                                                    <option value="">$100</option>
+                                                    <option value="">$200</option>
+                                                    <option value="">$300</option>
+                                                    <option value="">$400</option>
+                                                    <option value="">$500</option>
+                                                    <option value="">$600</option>
+                                                    <option value="">$700</option>
+                                                    <option value="">$800</option>
+                                                    <option value="">$900</option>
+                                                    <option value="">$1000</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg align-self-end">
+                                    <div class="form-group">
+                                        <div class="form-field">
+                                            <input type="submit" value="Search" class="form-control btn btn-primary">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+<!-- <section id="Services" class="ftco-section services-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+                <h2 class="mb-2">Our Services</h2>
+            </div>
+        </div>
+        <div class="row d-flex">
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services">
+                    <div class="media-body py-md-4">
+                        <div class="d-flex mb-3 align-items-center">
+                            <div class="icon"><span class="flaticon-customer-support"></span></div>
+                            <h3 class="heading mb-0 pl-3">24/7 Car Support</h3>
+                        </div>
+                        <p>A small river named Duden flows by their place and supplies it with you</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services">
+                    <div class="media-body py-md-4">
+                        <div class="d-flex mb-3 align-items-center">
+                            <div class="icon"><span class="flaticon-route"></span></div>
+                            <h3 class="heading mb-0 pl-3">Lots of location</h3>
+                        </div>
+                        <p>A small river named Duden flows by their place and supplies it with you</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services">
+                    <div class="media-body py-md-4">
+                        <div class="d-flex mb-3 align-items-center">
+                            <div class="icon"><span class="flaticon-online-booking"></span></div>
+                            <h3 class="heading mb-0 pl-3">Reservation</h3>
+                        </div>
+                        <p>A small river named Duden flows by their place and supplies it with you</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services">
+                    <div class="media-body py-md-4">
+                        <div class="d-flex mb-3 align-items-center">
+                            <div class="icon"><span class="flaticon-rent"></span></div>
+                            <h3 class="heading mb-0 pl-3">Rental Cars</h3>
+                        </div>
+                        <p>A small river named Duden flows by their place and supplies it with you</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<section class="mb-5 mt-5" id="Services"> <!-- class="ftco-section" -->
+    <div class="container-fluid px-4">
+        <div class="row justify-content-center">
+            <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+                <h2 class="mb-2">Our Services</h2>
+            </div>
+        </div>
+        <div class="row" style="justify-content: space-evenly;">
+            <div class="col-md-3 vehicle-section" *ngFor="let vehicle of vehicles">
+                <div class="car-wrap ftco-animate vehicle-wrapper">
+                    <div class="inService" [ngStyle]="{'opacity':vehicle.inService?'1':'0.5'}">
+                        <div class="img d-flex align-items-end vehicle-img"
+                            style="background-image: url({{vehicle.image}});">
+                            <div class="price-wrap d-flex">
+                                <span class="rate">{{vehicle.dailyWages}}</span>
+                                <p class="from-day">
+                                    <span>From</span>
+                                    <span>/Day</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text p-4 text-center">
+                        <h2 class="mb-0"><a href="#">{{vehicle.vehicleName}}</a></h2>
+                        <span>{{vehicle.vehicleBrand}}</span>
+                        <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-black btn-outline-black mr-1">Book
+                                now</a> <a href="#" class="btn btn-black btn-outline-black ml-1">Details</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section services-section img" style="background-image: url(../../../assets/images/logistics/Logistic1.jpg);background-size:contain">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+                <!-- <span class="subheading">Work flow</span> -->
+                <h2 class="mb-3">Why Choose Load Go</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services services-2">
+                    <div class="media-body py-md-4 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <img width="50px" src="../../../assets/images/icons/bestprice.png" ></div>
+                        <h3>Lowest Price Guarantee</h3>
+                        <h4 style="color:#fff" >100% price match and quality service guarantee</h4>
+                        <!-- <p>Moving at a price you can afford- we'll match any competitor's quote.
+                        Get exact prices based on shifting details.
+                        No surprises on your shifting day, and no hidden costs.
+                        Save Money - Save Time - No Damages</p> -->
+                    </div>
+                </div>
+            </div>
+
+                        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                            <div class="media block-6 services services-2">
+                                <div class="media-body py-md-4 text-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <img width="50px" src="../../../assets/images/icons/cancellation.png">
+                                    </div>
+                                    <h3>Free Cancellation & Reschedule</h3>
+                                    <h4 style="color:#fff">Book now, cancel or change anytime later</h4>
+                                    <!-- <p>Book your slot today and change the date later anytime
+                                    FREE cancelation and full refunds with no questions asked
+                                    Book slots in advance to avoid high demand and high prices</p> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                            <div class="media block-6 services services-2">
+                                <div class="media-body py-md-4 text-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <img width="50px" src="../../../assets/images/icons/ratedpartners.png">
+                                    </div>
+                                    <h3>Professional Quality Service Assurance</h3>
+                                    <h4 style="color:#fff" >Don't risk your precious inventory with unprofessional/untrained service, go for professional quality service.</h4>
+                                    <!-- <p>Ensure the safe movement of household goods by our top quality service experts.
+                                    Only verified and best-in-class experts are chosen after a stringent quality check process.
+                                    No price changes on the day of your movement, and obligation to the quoted price.</p> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                            <div class="media block-6 services services-2">
+                                <div class="media-body py-md-4 text-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <img width="50px" src="../../../assets/images/icons/movemanager.png">
+                                    </div>
+                                    <h3>Dedicated Move Manager</h3>
+                                    <h4 style="color:#fff">Be tension free and let the move manager take care</h4>
+                                    <!-- <p>Move manager to make your shifting hassle-free
+                                    Move manager makes sure no delays happen on the shifting day
+                                    Reminders about your movement, solving problems before they happen</p> -->
+                                </div>
+                            </div>
+                        </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="AboutUs" class="ftco-section ftco-no-pt ftco-no-pb" >
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center"
+                style="background-image: url(../../../assets/images/logistics4.jpg); background-size:contain;">
+            </div>
+            <div class="col-md-6 wrap-about py-md-5 ftco-animate">
+                <div class="heading-section mb-5 pl-md-5">
+                    <h2 class="mb-4">About Us</h2>
+
+                    <p>Our team of experienced logistics professionals provides customized solutions that meet the
+                        unique needs of our clients
+                        in the transport logistics industry. Using a customer-centric approach, we design logistics
+                        strategies that optimize
+                        supply chains, reduce costs, and improve delivery times.</p>
+
+                    <p>Leveraging cutting-edge technology, we provide complete visibility into the transportation
+                        process, including real-time
+                        tracking of shipments and proactive identification of potential bottlenecks. We are committed to
+                        sustainability and work
+                        to minimize our carbon footprint by optimizing routing and transportation modes, and partnering
+                        with
+                        environmentally-conscious suppliers and carriers.</p>
+
+                    <p>At the heart of our business is a dedication to exceptional customer service. We understand that
+                        logistics can be
+                        complex and challenging, and our team is always available to provide support and guidance at
+                        every stage of the process.
+                        Whether you are a small business or a large corporation, our logistics solutions are designed to
+                        help you succeed.</p>
+                    <p><a href="#" class="btn btn-primary">Search Vehicle</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<footer class="ftco-footer ftco-bg-dark ftco-section" id="ContactUs">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">About LoadGo</h2>
+                    <p>LoadGo is a comprehensive logistics and transportation management platform that enables businesses to simplify their
+                    supply chain processes with features like real-time tracking, payments, and reporting.</p>
+                    <!-- <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                    </ul> -->
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                    <h2 class="ftco-heading-2">Information</h2>
+                    <ul class="list-unstyled">
+                        <li><a routerLink="" fragment="AboutUs" class="py-2 d-block">About</a></li>
+                        <li><a routerLink="" fragment="Services" class="py-2 d-block">Services</a></li>
+                        <!-- <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
+                        <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
+                        <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Customer Support</h2>
+                    <ul class="list-unstyled">
+                        <!-- <li><a href="#" class="py-2 d-block">FAQ</a></li>
+                        <li><a href="#" class="py-2 d-block">Payment Option</a></li>
+                        <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
+                        <li><a href="#" class="py-2 d-block">How it works</a></li>
+                        <li><a routerLink="" fragment="Services" class="py-2 d-block">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div> -->
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Have a Questions?</h2>
+                    <div class="block-23 mb-3">
+                        <ul>
+                            <li><span class="icon icon-map-marker"></span><span class="text">Kolkata 700013, West
+                                    Bengal</span></li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91
+                                        8910209640</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span
+                                        class="text">loadgo2023@gmail.com</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+
+                <p>Copyright &copy; {{year}} All rights reserved |<a href="/" target=""> LoadGo</a>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- <google-map></google-map> -->
+
+<!-- loader
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div> -->

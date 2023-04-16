@@ -1,0 +1,38 @@
+.hero-container {
+  background-image: url("../../../assets/images/logistics/logistics3.jpg");
+  background-size: 66vw;
+  background-position: left;
+}
+
+.vehicle-section {
+  .vehicle-wrapper {
+    position: relative;
+    box-shadow: #0000003d 0 3px 8px;
+    .vehicle-img {
+      transition: transform 0.2s ease-in-out;
+    }
+    .vehicle-img:hover {
+      transform: scale(1.05);
+    }
+
+    .button {
+      background-color: rgb(157, 157, 157);
+    }
+  }
+}
+.inService {
+  background-color: bisque;
+  z-index: 10;
+  // position:absolute;
+}
+
+.estimate-form {
+  border: 1px solid red;
+  display: grid;
+  gap: 0;
+  .back-button {
+    place-self: end;
+  }
+}
+
+//
