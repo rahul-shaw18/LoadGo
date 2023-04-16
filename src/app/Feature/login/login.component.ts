@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/auth';
 import 'firebase/firestore'
@@ -18,31 +18,41 @@ var config = {
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  toggle=true
 
   phoneNumber: any;
   reCaptchaVerifier: any;
-  constructor(private router:Router){}
+  constructor(private router: Router) {}
 
-  
   ngOnInit() {
-    firebase.initializeApp(config)
+    firebase.initializeApp(config);
   }
 
   getOTP() {
     this.reCaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      'sign-in-button', { size: 'invisible' });
-    firebase.auth().signInWithPhoneNumber(this.phoneNumber, this.reCaptchaVerifier).then((confimationResult:any) => {
-      console.log(confimationResult)
-      localStorage.setItem('verificationId', JSON.stringify(confimationResult.verificationId))
-      this.router.navigate(['/otpAuthentication']);
-    }).catch((error) => {
-      alert(error.message)
-      setTimeout(() => {
-        window.location.reload();
-      }, 5000);
-    })
+      'sign-in-button',
+      { size: 'invisible' }
+    );
+    firebase
+      .auth()
+      .signInWithPhoneNumber(this.phoneNumber, this.reCaptchaVerifier)
+      .then((confimationResult: any) => {
+        console.log(confimationResult);
+        localStorage.setItem(
+          'verificationId',
+          JSON.stringify(confimationResult.verificationId)
+        );
+        // this.router.navigate(['/otpAuthentication']);
+        this.toggle = false;
+      })
+      .catch((error) => {
+        alert(error.message);
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000);
+      });
   }
 }

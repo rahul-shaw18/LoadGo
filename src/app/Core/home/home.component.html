@@ -23,21 +23,30 @@
     data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
+            <div>
+                <!-- <app-login *ngIf="!toggleOTP" (toggleOTP)="getToggleOTP($event)"></app-login>
+                <app-authentication *ngIf="toggleOTP"></app-authentication> -->
+            </div>
         <div class="row no-gutters slider-text justify-content-start align-items-center">
             <div class="col-lg-6 col-md-6 ftco-animate d-flex align-items-end">
                 <div class="text">
                     <!-- <h1 class="mb-4">Now <span>It's easy for you</span> <span>rent a car</span></h1> -->
+                    
                     <p style="font-size: 18px;"></p>
 
                 </div>
             </div>
-            <div class="col-lg-2 col"></div>
-
+            <div class="col-lg-2 col">
+                
+            </div>
 
             <div class="col-lg-4 col-md-6 mt-0 mt-md-5 d-flex">
+                
                 <div [ngStyle]="{'display': toggleForm ? 'none' : 'block'}">
                     <form [formGroup]="form" class="request-form ftco-animate">
                         <h2>Get Estimate Value</h2>
+                        <!-- <app-login *ngIf="!toggleOTP" (toggleOTP)="getToggleOTP($event)"></app-login>
+                                        <app-authentication *ngIf="toggleOTP"></app-authentication> -->
                         <div class="form-group">
                             <label for="" class="label">Pick-up location</label>
                             <input #pickUpField type="text" class="form-control" formControlName="pickUp"
@@ -60,17 +69,14 @@
                                 <input type="text" class="form-control" id="LastName" formControlName="LastName"
                                     placeholder="Last Name">
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="label">Phone Number</label>
-                            <input id="calendar" type="number" class="form-control" id="phoneNo"
-                                formControlName="phoneNo" placeholder="Phone Number">
+                            <!-- <div style="text-align: center; margin:2px 0" (click)="openDialog()">Verify Phone Number</div> -->
                         </div>
                         <div class="form-group">
                             <button id="calendar" [disabled]="form.invalid" (click)="getDistance()"
                                 class="btn btn-primary py-3 px-4">Get Estimate Value</button>
                         </div>
                     </form>
+                    
                 </div>
 
                 <div [ngStyle]="{'display': !toggleForm ? 'none' : 'block'}" style=" width:400px">
@@ -111,7 +117,7 @@
                                 </div>
                             </div>
 
-
+                            
                         </div>
                         <div class="form-group back-button">
                             <button id="calendar" (click)="goBack()" class="btn btn-primary py-3 px-4">Go Back</button>

@@ -24,6 +24,8 @@ export class AuthenticationComponent implements OnInit {
   otp!: string;
   verify: any;
 
+  toggle=false
+
   constructor(private router:Router){}
   ngOnInit() {
    
@@ -46,6 +48,7 @@ export class AuthenticationComponent implements OnInit {
       inputError: '',
     },
   };
+  
 
   onOtpChange(otpCode: any) { 
     this.otp = otpCode
@@ -60,7 +63,7 @@ export class AuthenticationComponent implements OnInit {
     firebase.auth().signInWithCredential(credentials).then((response) => {
       console.log(response)
       localStorage.setItem('user_data',JSON.stringify(response))
-      this.router.navigate(['/home'])
+      this.toggle = true;
     }).catch((error: any) => {
       alert(error.message)
     })

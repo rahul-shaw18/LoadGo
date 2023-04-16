@@ -6,6 +6,7 @@ import { HomeComponent } from './Core/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +47,7 @@ import { environment } from '../environment/environment';
     AngularFireAuthModule,
     AngularFirestoreModule,
     NgxOtpInputModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

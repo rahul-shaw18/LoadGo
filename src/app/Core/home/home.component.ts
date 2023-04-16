@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, OnChanges, SimpleChanges,} from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators, } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators, FormControlName, } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from 'src/app/Feature/login/login.component';
 
 
 @Component({
@@ -17,6 +19,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
   distance: any;
   @ViewChild('pickUpField') pickUpField!: ElementRef;
   @ViewChild('dropOffField') dropOffField!: ElementRef;
+
+  toggleOTP = false;
+  getToggleOTP(e: any) {
+    this.toggleOTP = e;
+  }
 
   disable = true;
   vehicles = [
@@ -51,13 +58,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
   distanceService = new google.maps.DistanceMatrixService();
   directionsService = new google.maps.DirectionsService();
 
-  constructor(private formBuilder: FormBuilder, private activatedRoute:ActivatedRoute) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog
+  ) {
     this.form = this.formBuilder.group({
-      pickUp: ['',   Validators.required,],
-      dropOff: ['',     Validators.required,    ],
+      pickUp: ['', Validators.required],
+      dropOff: ['', Validators.required],
       firstName: ['', Validators.required],
       LastName: ['', Validators.required],
-      phoneNo: ['', Validators.required],
     });
   }
 
@@ -70,13 +80,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnInit(): void {
     this.activatedRoute.fragment.subscribe((value) => {
       console.log(value);
-      this.jumpTo(value)
-      
-    })
+      this.jumpTo(value);
+    });
   }
 
-  jumpTo(section:any) {
-    document.getElementById(section)?.scrollIntoView({behavior:'smooth'})
+  jumpTo(section: any) {
+    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
   }
 
   ngAfterViewInit(): void {
@@ -91,25 +100,24 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
     this.dropOff = new google.maps.places.Autocomplete(
       this.dropOffField.nativeElement
     ).setComponentRestrictions({ country: 'IN' });
-
-    
-
-
   }
 
   onSubmit() {
-     
     console.log('controls ', this.form.controls);
     console.log('value ', this.form.value);
   }
 
   getDistance() {
-    this.form.patchValue({ pickUp: this.pickUpField.nativeElement.value })
+    // console.log('controls ', this.form.controls);
+    // console.log('value ', this.form.value);
+    // this.form.patchValue({ phoneNumber: this.phoneNo.value });
+    this.openDialog();
+    this.form.patchValue({ pickUp: this.pickUpField.nativeElement.value });
     this.form.patchValue({ dropOff: this.dropOffField.nativeElement.value });
 
-    this.toggleForm = true;
+    // this.toggleForm = true;
 
-    // distance Calculation 
+    // distance Calculation
     let origin = this.pickUpField.nativeElement.value;
     let destination = this.dropOffField.nativeElement.value;
     this.distanceService.getDistanceMatrix(
@@ -137,7 +145,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
       }
     );
 
-      // duration Calculation
+    // duration Calculation
     let request = {
       origin: this.pickUpField.nativeElement.value,
       destination: this.dropOffField.nativeElement.value,
@@ -184,8 +192,22 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
     console.log('value ', this.form.controls);
     this.toggleForm = !this.toggleForm;
   }
-  toggle=false
+  toggle = false;
   toggleMenu() {
-    this.toggle =!this.toggle
+    this.toggle = !this.toggle;
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '30%',
+      minWidth:'320px',
+      panelClass: 'verification-dialog',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed', result);
+      this.toggleForm = true;
+      // handle the result here
+    });
   }
 }
