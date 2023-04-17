@@ -19,30 +19,27 @@
     </div>
 </nav>
 <!-- END nav -->
-<div id="Home" class="hero-wrap hero-container" 
-    data-stellar-background-ratio="0.5">
+<div id="Home" class="hero-wrap hero-container" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
-            <div>
-                <!-- <app-login *ngIf="!toggleOTP" (toggleOTP)="getToggleOTP($event)"></app-login>
-                <app-authentication *ngIf="toggleOTP"></app-authentication> -->
-            </div>
-        <div class="row no-gutters slider-text justify-content-start align-items-center">
-            <div class="col-lg-6 col-md-6 ftco-animate d-flex align-items-end">
-                <div class="text">
-                    <!-- <h1 class="mb-4">Now <span>It's easy for you</span> <span>rent a car</span></h1> -->
-                    
-                    <p style="font-size: 18px;"></p>
+        <div class="row no-gutters slider-text justify-content-end align-items-center">
 
+            <!-- <div class="mobile-view">
+                <div class="col-lg-6 col-md-6 ftco-animate d-flex align-items-end">
+                    <div class="text">
+                        <h1 class="mb-4">Now <span>It's easy for you</span> <span>rent a car</span></h1>
+                        <p style="font-size: 18px;"></p>
+
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-2 col">
-                
-            </div>
+                <div class="col-lg-2 col">
+                </div>
+            </div> -->
+
 
             <div class="col-lg-4 col-md-6 mt-0 mt-md-5 d-flex">
-                
-                <div [ngStyle]="{'display': toggleForm ? 'none' : 'block'}">
+
+                <div  [ngStyle]="{'display': toggleForm ? 'none' : 'block'}">
                     <form [formGroup]="form" class="request-form ftco-animate">
                         <h2>Get Estimate Value</h2>
                         <!-- <app-login *ngIf="!toggleOTP" (toggleOTP)="getToggleOTP($event)"></app-login>
@@ -76,7 +73,7 @@
                                 class="btn btn-primary py-3 px-4">Get Estimate Value</button>
                         </div>
                     </form>
-                    
+
                 </div>
 
                 <div [ngStyle]="{'display': !toggleForm ? 'none' : 'block'}" style=" width:400px">
@@ -117,7 +114,7 @@
                                 </div>
                             </div>
 
-                            
+
                         </div>
                         <div class="form-group back-button">
                             <button id="calendar" (click)="goBack()" class="btn btn-primary py-3 px-4">Go Back</button>
@@ -331,13 +328,14 @@
     </div>
 </section>
 
-<section class="ftco-section services-section img" style="background-image: url(../../../assets/images/logistics/Logistic1.jpg);background-size:contain">
+<section class="ftco-section services-section img"
+    style="background-image: url(../../../assets/images/logistics/Logistic1.jpg);background-size:contain">
     <div class="overlay"></div>
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
                 <!-- <span class="subheading">Work flow</span> -->
-                <h2 class="mb-3">Why Choose Load Go</h2>
+                <h2 class="mb-3 header">Why Choose Load Go</h2>
             </div>
         </div>
         <div class="row">
@@ -345,9 +343,10 @@
                 <div class="media block-6 services services-2">
                     <div class="media-body py-md-4 text-center">
                         <div class="icon d-flex align-items-center justify-content-center">
-                            <img width="50px" src="../../../assets/images/icons/bestprice.png" ></div>
+                            <img width="50px" src="../../../assets/images/icons/bestprice.png">
+                        </div>
                         <h3>Lowest Price Guarantee</h3>
-                        <h4 style="color:#fff" >100% price match and quality service guarantee</h4>
+                        <h4 style="color:#fff">100% price match and quality service guarantee</h4>
                         <!-- <p>Moving at a price you can afford- we'll match any competitor's quote.
                         Get exact prices based on shifting details.
                         No surprises on your shifting day, and no hidden costs.
@@ -356,56 +355,57 @@
                 </div>
             </div>
 
-                        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-                            <div class="media block-6 services services-2">
-                                <div class="media-body py-md-4 text-center">
-                                    <div class="icon d-flex align-items-center justify-content-center">
-                                        <img width="50px" src="../../../assets/images/icons/cancellation.png">
-                                    </div>
-                                    <h3>Free Cancellation & Reschedule</h3>
-                                    <h4 style="color:#fff">Book now, cancel or change anytime later</h4>
-                                    <!-- <p>Book your slot today and change the date later anytime
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services services-2">
+                    <div class="media-body py-md-4 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <img width="50px" src="../../../assets/images/icons/cancellation.png">
+                        </div>
+                        <h3>Free Cancellation & Reschedule</h3>
+                        <h4 style="color:#fff">Book now, cancel or change anytime later</h4>
+                        <!-- <p>Book your slot today and change the date later anytime
                                     FREE cancelation and full refunds with no questions asked
                                     Book slots in advance to avoid high demand and high prices</p> -->
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-                            <div class="media block-6 services services-2">
-                                <div class="media-body py-md-4 text-center">
-                                    <div class="icon d-flex align-items-center justify-content-center">
-                                        <img width="50px" src="../../../assets/images/icons/ratedpartners.png">
-                                    </div>
-                                    <h3>Professional Quality Service Assurance</h3>
-                                    <h4 style="color:#fff" >Don't risk your precious inventory with unprofessional/untrained service, go for professional quality service.</h4>
-                                    <!-- <p>Ensure the safe movement of household goods by our top quality service experts.
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services services-2">
+                    <div class="media-body py-md-4 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <img width="50px" src="../../../assets/images/icons/ratedpartners.png">
+                        </div>
+                        <h3>Professional Quality Service Assurance</h3>
+                        <h4 style="color:#fff">Don't risk your precious inventory with unprofessional/untrained service,
+                            go for professional quality service.</h4>
+                        <!-- <p>Ensure the safe movement of household goods by our top quality service experts.
                                     Only verified and best-in-class experts are chosen after a stringent quality check process.
                                     No price changes on the day of your movement, and obligation to the quoted price.</p> -->
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-                            <div class="media block-6 services services-2">
-                                <div class="media-body py-md-4 text-center">
-                                    <div class="icon d-flex align-items-center justify-content-center">
-                                        <img width="50px" src="../../../assets/images/icons/movemanager.png">
-                                    </div>
-                                    <h3>Dedicated Move Manager</h3>
-                                    <h4 style="color:#fff">Be tension free and let the move manager take care</h4>
-                                    <!-- <p>Move manager to make your shifting hassle-free
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services services-2">
+                    <div class="media-body py-md-4 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <img width="50px" src="../../../assets/images/icons/movemanager.png">
+                        </div>
+                        <h3>Dedicated Move Manager</h3>
+                        <h4 style="color:#fff">Be tension free and let the move manager take care</h4>
+                        <!-- <p>Move manager to make your shifting hassle-free
                                     Move manager makes sure no delays happen on the shifting day
                                     Reminders about your movement, solving problems before they happen</p> -->
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 
-<section id="AboutUs" class="ftco-section ftco-no-pt ftco-no-pb" >
+<section id="AboutUs" class="ftco-section ftco-no-pt ftco-no-pb">
     <div class="container">
         <div class="row no-gutters">
             <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center"
@@ -450,8 +450,9 @@
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">About LoadGo</h2>
-                    <p>LoadGo is a comprehensive logistics and transportation management platform that enables businesses to simplify their
-                    supply chain processes with features like real-time tracking, payments, and reporting.</p>
+                    <p>LoadGo is a comprehensive logistics and transportation management platform that enables
+                        businesses to simplify their
+                        supply chain processes with features like real-time tracking, payments, and reporting.</p>
                     <!-- <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                         <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                         <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>

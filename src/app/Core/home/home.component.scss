@@ -2,6 +2,11 @@
   background-image: url("../../../assets/images/logistics/logistics3.jpg");
   background-size: 66vw;
   background-position: left;
+  .container{
+    .mobile-view{
+      display: block !important;
+    }
+  }
 }
 
 .vehicle-section {
@@ -39,10 +44,40 @@
     width: 80%;
   }
 
-@media(min-width:360) and (max-width:610){
-  .verification-dialog{
-    width: 80%;
+@media(min-width:360px) and (max-width:610px){
+
+.hero-container {
+  height: 95dvh;
+  .overlay{
+    height: auto;
+  }
+  background-size: 100vw;
+  background-position: top;
+  .container{
+    .mobile-view{
+      display: none;
+    }
   }
 }
 
-//
+
+.services-section .services{
+  width: 100%;
+}
+
+.services-section .header{
+  font-size: 36px;
+}
+  .verification-dialog{
+    width: 80%;
+  }
+
+  #AboutUs .container .img{
+    height: 400px;
+  }
+}
+
+
+// .slider-text {
+//     height: none;
+// }
