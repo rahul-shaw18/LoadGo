@@ -47,9 +47,9 @@
 @media(min-width:360px) and (max-width:610px){
 
 .hero-container {
-  height: 95dvh;
+  height: 100vh;
   .overlay{
-    height: auto;
+    height: 100dvh;
   }
   background-size: 100vw;
   background-position: top;
@@ -66,7 +66,7 @@
 }
 
 .services-section .header{
-  font-size: 36px;
+  font-size: clamp(34px, 4vw, 36px);
 }
   .verification-dialog{
     width: 80%;
@@ -75,6 +75,12 @@
   #AboutUs .container .img{
     height: 400px;
   }
+  .slider-text {
+    height: 100%;
+    position: relative;
+    top: 100px;
+
+}
 }
 
 

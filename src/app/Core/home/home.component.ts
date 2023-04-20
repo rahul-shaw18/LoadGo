@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
     {
       id: 3,
       image: '../../../assets/images/vehicles/bike2.jpg',
-      vehicleName: 'coming soon',
+      vehicleName: 'Coming Soon',
       vehicleBrand: '.....',
       dailyWages: 25,
       inService: false,
@@ -200,8 +200,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
   openDialog() {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '30%',
-      minWidth:'320px',
+      minWidth: '320px',
       panelClass: 'verification-dialog',
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

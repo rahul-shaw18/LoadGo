@@ -24,15 +24,14 @@ export class AuthenticationComponent implements OnInit {
   otp!: string;
   verify: any;
 
-  toggle=false
+  toggle = false;
 
-  constructor(private router:Router){}
+  constructor(private router: Router) {}
   ngOnInit() {
-   
-    firebase.initializeApp(config)
+    firebase.initializeApp(config);
 
     this.verify = JSON.parse(localStorage.getItem('verificationId') || '{}');
-    console.log(this.verify)
+    console.log(this.verify);
   }
 
   otpInputConfig: NgxOtpInputConfig = {
@@ -48,25 +47,31 @@ export class AuthenticationComponent implements OnInit {
       inputError: '',
     },
   };
-  
 
-  onOtpChange(otpCode: any) { 
-    this.otp = otpCode
-   
+  onOtpChange(otpCode: any) {
+    this.otp = otpCode;
+
     this.otp = this.otp.toString().replace(/,/g, '');
     console.log(this.otp);
   }
-  
-  handleClick() {
-    var credentials = firebase.auth.PhoneAuthProvider.credential(this.verify, this.otp)
 
-    firebase.auth().signInWithCredential(credentials).then((response) => {
-      console.log(response)
-      localStorage.setItem('user_data',JSON.stringify(response))
-      this.toggle = true;
-    }).catch((error: any) => {
-      alert(error.message)
-    })
-    
+  handleClick() {
+    var credentials = firebase.auth.PhoneAuthProvider.credential(
+      this.verify,
+      this.otp
+    );
+
+    firebase
+      .auth()
+      .signInWithCredential(credentials)
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem('user_data', JSON.stringify(response));
+        this.toggle = true;
+      })
+      .catch((error: any) => {
+        alert(error.message);
+      });
   }
+  resendOTP() {}
 }
