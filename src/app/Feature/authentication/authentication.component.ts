@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -21,6 +21,7 @@ var config = {
   styleUrls: ['./authentication.component.scss'],
 })
 export class AuthenticationComponent implements OnInit {
+  @Output() resendOTP: EventEmitter<any> =  new EventEmitter<any>();
   otp!: string;
   verify: any;
 
@@ -73,5 +74,7 @@ export class AuthenticationComponent implements OnInit {
         alert(error.message);
       });
   }
-  resendOTP() {}
+  onResendOTPClicked(e:any) {
+    this.resendOTP.emit(e)
+  }
 }

@@ -3,7 +3,7 @@
         <ngx-otp-input (otpChange)="onOtpChange($event)" [config]="otpInputConfig"></ngx-otp-input>
         <div class="mt-4">
             <button class="btn btn-success" (click)="handleClick()">Verify OTP</button>
-            <button class="btn btn-outline-primary ml-4" (click)="resendOTP()">Resend OTP</button>
+            <!-- <button class="btn btn-outline-primary ml-4" (click)="onResendOTPClicked($event)">Resend OTP</button> -->
         </div>
     </ng-container>
     <ng-container  *ngIf="toggle">

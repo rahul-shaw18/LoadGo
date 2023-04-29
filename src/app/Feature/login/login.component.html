@@ -23,7 +23,7 @@
         <button (click)="getOTP()" class="btn btn-success mt-4 signup">Get OTP</button>
         <div id="sign-in-button"></div>
     </ng-container>
-    <app-authentication *ngIf="!toggle"></app-authentication>
+    <app-authentication *ngIf="!toggle" (resendOTP)="resendOTP()"></app-authentication>
 </div>
 
 

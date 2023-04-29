@@ -1,9 +1,22 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, OnChanges, SimpleChanges,} from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators, FormControlName, } from '@angular/forms';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
+import {
+  FormControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControlName,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/Feature/login/login.component';
-
 
 @Component({
   selector: 'app-home',
@@ -19,6 +32,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
   distance: any;
   @ViewChild('pickUpField') pickUpField!: ElementRef;
   @ViewChild('dropOffField') dropOffField!: ElementRef;
+  @ViewChild('firstName') firstName!: ElementRef;
+  @ViewChild('lastName') lastName!: ElementRef;
 
   toggleOTP = false;
   getToggleOTP(e: any) {
@@ -63,11 +78,18 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog
   ) {
+    let userData;
+    const localData = localStorage.getItem('userData');
+    if (localData !== null) {
+      userData = JSON.parse(localData);
+      console.log(userData);
+    }
+
     this.form = this.formBuilder.group({
-      pickUp: ['', Validators.required],
-      dropOff: ['', Validators.required],
-      firstName: ['', Validators.required],
-      LastName: ['', Validators.required],
+      pickUp: [userData ? userData.pickup : '', Validators.required],
+      dropOff: [userData ? userData.dropOff : '', Validators.required],
+      firstName: [userData ? userData.firstName : '', Validators.required],
+      LastName: [userData ? userData.lastName : '', Validators.required],
     });
   }
 
@@ -111,6 +133,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
     // console.log('controls ', this.form.controls);
     // console.log('value ', this.form.value);
     // this.form.patchValue({ phoneNumber: this.phoneNo.value });
+
+    let userData = {
+      pickup: this.pickUpField.nativeElement.value,
+      dropOff: this.dropOffField.nativeElement.value,
+      firstName: this.firstName.nativeElement.value,
+      lastName: this.lastName.nativeElement.value,
+    };
+
+    localStorage.setItem('userData', JSON.stringify(userData));
     this.openDialog();
     this.form.patchValue({ pickUp: this.pickUpField.nativeElement.value });
     this.form.patchValue({ dropOff: this.dropOffField.nativeElement.value });
