@@ -36,3 +36,13 @@
 .verification-container{
   padding: 2em;
 }
+.phone-number{
+  display: flex;
+  .country-code{
+    padding: 0px;
+    width: 48px;
+    cursor: not-allowed;
+    text-indent: 10px;
+    margin-right: 15px;
+  }
+}

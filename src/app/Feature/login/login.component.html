@@ -16,7 +16,8 @@
 <div class="container verification-container">
     <h2>Phone Number Verification</h2>
     <ng-container *ngIf="toggle">
-        <div class="form-group">
+        <div class="form-group phone-number">
+            <input type="text" class="form-control country-code" value="+91" disabled>
             <input type="text" name="phoneNumber" [(ngModel)]="phoneNumber" min="10" max="15" class="form-control"
                 placeholder="Enter Phone Number">
         </div>
