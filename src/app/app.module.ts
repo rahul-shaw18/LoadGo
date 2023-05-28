@@ -21,6 +21,8 @@ import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../environment/environment';
+import { PrivacyPolicyComponent } from './Feature/privacy-policy/privacy-policy.component';
+import { TermsConditionsComponent } from './Feature/terms-conditions/terms-conditions.component';
 
 // const key = environment.apiKey;
 // // const src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places`;
@@ -32,6 +34,8 @@ import { environment } from '../environment/environment';
     HomeComponent,
     AuthenticationComponent,
     LoginComponent,
+    PrivacyPolicyComponent,
+    TermsConditionsComponent,
   ],
   imports: [
     BrowserModule,
